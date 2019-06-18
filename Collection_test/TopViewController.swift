@@ -18,7 +18,7 @@ class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //title = "API"
+        title = "記事一覧"
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -30,26 +30,26 @@ class TopViewController: UIViewController {
         self.collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
     }
     
-    func getArticles() { Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fblog.livedoor.jp%2Fdqnplus%2Findex.rdf", method: .get)
+    func getArticles() { Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeed.japan.cnet.com%2Frss%2Findex.rdf", method: .get)
         .responseJSON { response in
             //                print(response.result.value)
             guard let object = response.result.value else {
                 return
             }
             let json = JSON(object)
-            print(json)
+//            print(json)
             
             json["items"].forEach { (_, json) in
                 //                    print(json)
                 //                    print(json["items"]["title"].string)
                 let article: [String: String?] = [
                     "title": json["title"].string,
-                    "description": json["description"].string,
+//                    "description": json["description"].string,
                     "image": json["thumbnail"].string
                 ] // 1つの記事を表す辞書型を作る
                 self.articles.append(article) // 配列に入れる
             }
-            //print(self.articles)
+//            print(self.articles)
             self.collectionView.reloadData()
         }
     }
@@ -66,10 +66,33 @@ extension TopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        let article = articles[indexPath.row]
-        cell.label.text = "タイトル：" + article["title"]!!
+        var article = articles[indexPath.row]
+//        guard let image = article["thumbnail"] else { return }
+        let image: UIImage = UIImage(url: article["image"]!!)
+//        cell.label.text = "タイトル：" + article["title"]!!
+        cell.label.text = article["title"]!!
+        cell.image.image = image
         //        cell.subLabel.text = article["description"]!
         //          cell.subLabel.text = "ユーザネーム：" + article["userId"]!!
         return cell
+    }
+}
+
+extension TopViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: Int = 414
+        
+//        switch indexPath.row {
+//        case 0, 1:
+//            width = 414
+//            break
+//        case 2, 3:
+//            width = 200
+//            break
+//        default:
+//            width = 414
+//        }
+        
+        return CGSize(width: width, height: 100)
     }
 }
