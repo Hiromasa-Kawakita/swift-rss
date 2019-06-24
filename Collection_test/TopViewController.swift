@@ -30,7 +30,7 @@ class TopViewController: UIViewController {
         self.collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
     }
     
-    func getArticles() { Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeed.japan.cnet.com%2Frss%2Findex.rdf", method: .get)
+    func getArticles() { Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Flifehacking.jp%2Ffeed%2Fatom%2F", method: .get)
         .responseJSON { response in
             //                print(response.result.value)
             guard let object = response.result.value else {
