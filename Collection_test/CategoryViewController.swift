@@ -6,27 +6,85 @@
 //  Copyright © 2019 川北 紘正. All rights reserved.
 //
 
+import Alamofire
+import SwiftyJSON
 import UIKit
 
 class CategoryViewController: UIViewController {
-
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    
+    var articles: [[String: String?]] = [] // 記事を入れるプロパティを定義
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
         
+        getArticles()
+        
+        //Xib
+        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryCell")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getArticles() { Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Flifehacking.jp%2Ffeed%2Fatom%2F", method: .get)
+        .responseJSON { response in
+            //                print(response.result.value)
+            guard let object = response.result.value else {
+                return
+            }
+            let json = JSON(object)
+            //            print(json)
+            
+            json["items"].forEach { (_, json) in
+                //                    print(json)
+                //                    print(json["items"]["title"].string)
+                let article: [String: String?] = [
+                    "title": json["title"].string,
+                    //                    "description": json["description"].string,
+                    "image": json["thumbnail"].string
+                ] // 1つの記事を表す辞書型を作る
+                self.articles.append(article) // 配列に入れる
+            }
+            //            print(self.articles)
+            self.categoryCollectionView.reloadData()
+        }
     }
-    */
+}
 
+extension CategoryViewController: UICollectionViewDelegate {
+}
+
+extension CategoryViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return articles.count;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
+        
+//        var article = articles[indexPath.row]
+        cell.categoryLabel.text = "カテゴリー"
+        return cell
+    }
+}
+
+extension CategoryViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let width: Int = 414
+        
+        //        switch indexPath.row {
+        //        case 0, 1:
+        //            width = 414
+        //            break
+        //        case 2, 3:
+        //            width = 200
+        //            break
+        //        default:
+        //            width = 414
+        //        }
+        
+        return CGSize(width: 202, height: 202)
+    }
 }
