@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261849F922C477AD0028D366 /* WebView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 261849F822C477AD0028D366 /* WebView.storyboard */; };
+		261849FB22C47A820028D366 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261849FA22C47A820028D366 /* WebViewController.swift */; };
 		2630B2EF22B08D0D00C27031 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2630B2EE22B08D0D00C27031 /* CategoryViewController.swift */; };
 		2630B2F122B08D4800C27031 /* CategoryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2630B2F022B08D4800C27031 /* CategoryView.storyboard */; };
 		2630B2F322B08D9D00C27031 /* TopView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2630B2F222B08D9D00C27031 /* TopView.storyboard */; };
@@ -23,6 +25,7 @@
 		268394D922AE06AD00E5C178 /* Collection_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268394D822AE06AD00E5C178 /* Collection_testUITests.swift */; };
 		26C86A9022AF7A2300C8D6F8 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86A8E22AF7A2300C8D6F8 /* CollectionViewCell.swift */; };
 		26C86A9122AF7A2300C8D6F8 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26C86A8F22AF7A2300C8D6F8 /* CollectionViewCell.xib */; };
+		26DF443C22C9AB5800639A92 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF443B22C9AB5800639A92 /* ArticleModel.swift */; };
 		335C6D3C5EB7ED5FBC7FD513 /* Pods_Collection_testUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67632D58C0E69538919811C2 /* Pods_Collection_testUITests.framework */; };
 		788F20E97E3632725F882BC2 /* Pods_Collection_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195AF59F1D61E5C89585EEAF /* Pods_Collection_test.framework */; };
 		B4772675A3B4CF9B4A82DF34 /* Pods_Collection_testTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B549D62B2B397F174518F76C /* Pods_Collection_testTests.framework */; };
@@ -48,6 +51,8 @@
 /* Begin PBXFileReference section */
 		0FC78E33D81217E7915C8E57 /* Pods-Collection_test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Collection_test.release.xcconfig"; path = "Target Support Files/Pods-Collection_test/Pods-Collection_test.release.xcconfig"; sourceTree = "<group>"; };
 		195AF59F1D61E5C89585EEAF /* Pods_Collection_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Collection_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		261849F822C477AD0028D366 /* WebView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebView.storyboard; sourceTree = "<group>"; };
+		261849FA22C47A820028D366 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		262B756A22AE125100161D64 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		262B756C22AE125D00161D64 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		2630B2EE22B08D0D00C27031 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		26BE60F822B0C8EB00CC8B10 /* Alamofire */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Alamofire; path = Pods/Alamofire; sourceTree = "<group>"; };
 		26C86A8E22AF7A2300C8D6F8 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		26C86A8F22AF7A2300C8D6F8 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		26DF443B22C9AB5800639A92 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		67632D58C0E69538919811C2 /* Pods_Collection_testUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Collection_testUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69876918413455D7DD529FA1 /* Pods-Collection_testUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Collection_testUITests.debug.xcconfig"; path = "Target Support Files/Pods-Collection_testUITests/Pods-Collection_testUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8723E9549120563186E488FD /* Pods-Collection_testTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Collection_testTests.debug.xcconfig"; path = "Target Support Files/Pods-Collection_testTests/Pods-Collection_testTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +154,9 @@
 		268394B722AE06AB00E5C178 /* Collection_test */ = {
 			isa = PBXGroup;
 			children = (
+				26DF443B22C9AB5800639A92 /* ArticleModel.swift */,
+				261849FA22C47A820028D366 /* WebViewController.swift */,
+				261849F822C477AD0028D366 /* WebView.storyboard */,
 				269BFE1122C095A10010F3B5 /* Top */,
 				269BFE1222C096120010F3B5 /* Category */,
 				268394BF22AE06AD00E5C178 /* Assets.xcassets */,
@@ -324,6 +333,7 @@
 			files = (
 				268394C322AE06AD00E5C178 /* LaunchScreen.storyboard in Resources */,
 				2630B2F722B0B73D00C27031 /* CategoryCollectionViewCell.xib in Resources */,
+				261849F922C477AD0028D366 /* WebView.storyboard in Resources */,
 				2630B2F322B08D9D00C27031 /* TopView.storyboard in Resources */,
 				268394C022AE06AD00E5C178 /* Assets.xcassets in Resources */,
 				26C86A9122AF7A2300C8D6F8 /* CollectionViewCell.xib in Resources */,
@@ -440,12 +450,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2630B2EF22B08D0D00C27031 /* CategoryViewController.swift in Sources */,
+				26DF443C22C9AB5800639A92 /* ArticleModel.swift in Sources */,
 				268394BB22AE06AB00E5C178 /* TopViewController.swift in Sources */,
 				268394B922AE06AB00E5C178 /* AppDelegate.swift in Sources */,
 				26C86A9022AF7A2300C8D6F8 /* CollectionViewCell.swift in Sources */,
 				2630B2F622B0B73D00C27031 /* CategoryCollectionViewCell.swift in Sources */,
 				265316AF22AF6A210059FCC9 /* Model.swift in Sources */,
 				26613F1222B8A8BB0094A561 /* UIImage.swift in Sources */,
+				261849FB22C47A820028D366 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V35Q666UYN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -646,6 +659,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V35Q666UYN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
