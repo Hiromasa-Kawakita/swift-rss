@@ -14,7 +14,12 @@ class TopViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     //let models = Model.createModels()
-    var articles: [[String: String?]] = [] // 記事を入れるプロパティを定義
+    var stations: [Station] = [Station]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,62 +42,98 @@ class TopViewController: UIViewController {
                 return
             }
             let json = JSON(object)
-//            print(json)
-            
+            var stationInfo: [Station] = []
             json["items"].forEach { (_, json) in
-                //                    print(json)
-                //                    print(json["items"]["title"].string)
-                let article: [String: String?] = [
-                    "title": json["title"].string,
-//                    "description": json["description"].string,
-                    "image": json["thumbnail"].string
-                ] // 1つの記事を表す辞書型を作る
-                self.articles.append(article) // 配列に入れる
+                
+                let station: Station = Station.init(title: json["title"].string, description: json["pubDate"].string, image: json["thumbnail"].string, link: json["link"].string)
+                stationInfo.append(station)
             }
-//            print(self.articles)
+            self.stations = stationInfo
             self.collectionView.reloadData()
         }
     }
 }
 
 extension TopViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = UIStoryboard(name: "WebView", bundle: nil).instantiateInitialViewController()! as! WebViewController
+        vc.station = stations[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension TopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articles.count;
+        return stations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+
         
-        var article = articles[indexPath.row]
-//        guard let image = article["thumbnail"] else { return }
-        let image: UIImage = UIImage(url: article["image"]!!)
-//        cell.label.text = "タイトル：" + article["title"]!!
-        cell.label.text = article["title"]!!
-        cell.image.image = image
-        //        cell.subLabel.text = article["description"]!
-        //          cell.subLabel.text = "ユーザネーム：" + article["userId"]!!
+        cell.image.image = UIImage(named: "defaultImage")
+        
+        
+        
+        let station1 = stations[indexPath.row]
+        let image: UIImage?
+        
+//        if let imageUrl = station1.image
+        
+            
+//            { image = UIImage(url: imageUrl) }
+//        else { image = UIImage(named: "defaultImage") }
+        
+//        station1.image
+        
+        
+        
+//        let image: UIImage = UIImage(url: station1.image!)
+        cell.label.text = station1.title!
+        cell.descriptionLabel.text = station1.description!
+
+        
+        DispatchQueue.global().async {
+            let image = UIImage(url: station1.image!)
+            
+            DispatchQueue.main.async {
+                cell.image.image = image
+            }
+            
+        }
+        
+        
+//        getImage( url: station1.image!, comletion: { image in
+//
+//             //UIImage(url: station1.image ?? "" )
+//        })
+//
+        
+    
+       //: ?? UIImage(named: "defaultImage")
         return cell
     }
+    
+
+    
 }
 
 extension TopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: Int = 414
-        
-//        switch indexPath.row {
-//        case 0, 1:
-//            width = 414
-//            break
-//        case 2, 3:
-//            width = 200
-//            break
-//        default:
-//            width = 414
-//        }
-        
-        return CGSize(width: width, height: 100)
+        let cellSize: CGSize
+        let widthSize = UIScreen.main.bounds.width
+//        let heightSize = UIScreen.main.bounds.height * 0.3571
+
+        switch indexPath.row {
+        case 2, 3, 6, 7:
+            cellSize = CGSize(width: widthSize * 0.4830, height: 320)
+            break
+        default:
+            cellSize = CGSize(width: widthSize, height: 320)
+        }
+
+        return cellSize
     }
 }
