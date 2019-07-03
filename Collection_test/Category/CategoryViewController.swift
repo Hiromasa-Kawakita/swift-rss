@@ -64,27 +64,14 @@ extension CategoryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
         
-//        var article = articles[indexPath.row]
-        cell.categoryLabel.text = "カテゴリー"
+        cell.categoryLabel.text = ""
         return cell
     }
 }
 
 extension CategoryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width: Int = 414
-        
-        //        switch indexPath.row {
-        //        case 0, 1:
-        //            width = 414
-        //            break
-        //        case 2, 3:
-        //            width = 200
-        //            break
-        //        default:
-        //            width = 414
-        //        }
-        
-        return CGSize(width: 202, height: 202)
+        let widthSize = UIScreen.main.bounds.width * 0.47
+        return CGSize(width: widthSize, height: widthSize)
     }
 }
